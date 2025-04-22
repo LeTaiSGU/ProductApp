@@ -8,6 +8,7 @@ import {
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ProductManagement from "./components/ProductManagement";
+import "./App.css";
 
 function App() {
   const [token, setToken] = useState(null);

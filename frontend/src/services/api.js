@@ -35,3 +35,9 @@ export const deleteProduct = async (id, token) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+export const getProductById = async (id, token) => {
+  const response = await axios.get(`${API_URL}/products/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};

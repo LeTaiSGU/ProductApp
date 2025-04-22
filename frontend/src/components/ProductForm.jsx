@@ -15,49 +15,87 @@ function ProductForm({ token }) {
       setName("");
       setDescription("");
       setPrice("");
-      window.location.reload();
+      window.location.reload(); // Nếu muốn fetch lại dữ liệu như bên ProductList thì sửa chỗ này
     } catch (err) {
       console.error(err.response?.data || err.message);
     }
   };
 
+  const styles = {
+    container: {
+      fontFamily: "Arial, sans-serif",
+      maxWidth: "600px",
+      margin: "0 auto",
+      padding: "20px",
+      border: "1px solid #ddd",
+      borderRadius: "6px",
+      backgroundColor: "#fff",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+    },
+    formTitle: {
+      fontSize: "22px",
+      fontWeight: "bold",
+      marginBottom: "20px",
+    },
+    inputGroup: {
+      marginBottom: "15px",
+    },
+    label: {
+      display: "block",
+      fontWeight: "bold",
+      marginBottom: "6px",
+    },
+    input: {
+      width: "100%",
+      padding: "8px",
+      border: "1px solid #ccc",
+      borderRadius: "4px",
+      boxSizing: "border-box",
+    },
+    button: {
+      backgroundColor: "#4285f4",
+      color: "#fff",
+      padding: "10px 16px",
+      border: "none",
+      borderRadius: "4px",
+      cursor: "pointer",
+    },
+  };
+
   return (
-    <div className="bg-white p-6 rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">Thêm sản phẩm</h2>
+    <div style={styles.container}>
+      <h2 style={styles.formTitle}>Thêm sản phẩm</h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700">Tên sản phẩm</label>
+        <div style={styles.inputGroup}>
+          <label style={styles.label}>Tên sản phẩm</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full p-2 border rounded"
+            style={styles.input}
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Mô tả</label>
+        <div style={styles.inputGroup}>
+          <label style={styles.label}>Mô tả</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-2 border rounded"
+            style={styles.input}
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Giá</label>
+        <div style={styles.inputGroup}>
+          <label style={styles.label}>Giá</label>
           <input
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="w-full p-2 border rounded"
+            style={styles.input}
             required
           />
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-        >
+        <button type="submit" style={styles.button}>
           Thêm sản phẩm
         </button>
       </form>
