@@ -2,12 +2,17 @@
 frontend/node_modules/
 frontend/build/
 
-# Python dependencies
-backend/__pycache__/
-backend/*.pyc
-backend/*.pyo
-backend/env/
-backend/.env
+# Python bytecode
+**/__pycache__/
+**/*.py[cod]
+
+# Virtual environments
+backend/venv/
+backend/.venv/
+
+# System files
+*.bak
+*.tmp
 
 # Docker
 *.log
@@ -28,3 +33,28 @@ Thumbs.db
 
 # Environment variables
 .env
+
+# Static files (images, uploads, etc.)
+backend/static/images/
+backend/static/uploads/
+
+# Image uploads or other static content you don't want to track
+backend/static/images/*
+!backend/static/images/.keep
+
+# Python dependencies
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/env/
+backend/.env
+
+# Database files (if you’re using SQLite or local databases)
+*.sqlite3
+
+# Backup and temporary files
+*.bak
+*.tmp
+
+# Miscellaneous
+*.log
