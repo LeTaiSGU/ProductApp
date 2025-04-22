@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -6,7 +6,19 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // Sử dụng useNavigate để điều hướng
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Đảm bảo toàn bộ nền trang là màu trắng
+    document.body.style.margin = "0";
+    document.body.style.padding = "0";
+    document.body.style.backgroundColor = "#fff"; // Nền trắng
+    document.body.style.color = "#000"; // Chữ đen
+    document.body.style.height = "100vh";
+    document.body.style.display = "flex";
+    document.body.style.justifyContent = "center";
+    document.body.style.alignItems = "center";
+  }, []);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -15,40 +27,138 @@ const Register = () => {
         username,
         password,
       });
-      setMessage("User registered successfully!");
+      setMessage("Đăng ký thành công! Chuyển về trang đăng nhập...");
       setTimeout(() => {
         navigate("/login"); // Chuyển về trang đăng nhập sau khi đăng ký thành công
-      }, 1000); // Đợi 1 giây để hiển thị thông báo trước khi chuyển trang
+      }, 1000);
     } catch (error) {
-      setMessage(error.response?.data?.detail || "Registration failed");
+      setMessage(error.response?.data?.detail || "Đăng ký thất bại");
     }
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div
+      style={{
+        backgroundColor: "#f0f0f0", // Nền form màu xám nhạt
+        padding: "40px",
+        borderRadius: "8px",
+        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.5)",
+        width: "100%",
+        maxWidth: "400px",
+      }}
+    >
+      <h2
+        style={{
+          textAlign: "center",
+          fontSize: "24px",
+          marginBottom: "20px",
+          color: "#000",
+        }}
+      >
+        Đăng ký
+      </h2>
       <form onSubmit={handleRegister}>
-        <div>
-          <label>Username:</label>
+        <div style={{ marginBottom: "20px" }}>
+          <label
+            style={{
+              display: "block",
+              fontSize: "14px",
+              marginBottom: "8px",
+              color: "#333", // Chữ đen nhạt
+            }}
+          >
+            Tên đăng nhập:
+          </label>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              backgroundColor: "#fff", // Nền trắng
+              color: "#000", // Chữ đen
+              fontSize: "14px",
+            }}
           />
         </div>
-        <div>
-          <label>Password:</label>
+        <div style={{ marginBottom: "20px" }}>
+          <label
+            style={{
+              display: "block",
+              fontSize: "14px",
+              marginBottom: "8px",
+              color: "#333", // Chữ đen nhạt
+            }}
+          >
+            Mật khẩu:
+          </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              backgroundColor: "#fff", // Nền trắng
+              color: "#000", // Chữ đen
+              fontSize: "14px",
+            }}
           />
         </div>
-        <button type="submit">Register</button>
+        <button
+          type="submit"
+          style={{
+            width: "100%",
+            padding: "10px",
+            backgroundColor: "#007bff", // Nút xanh dương
+            color: "#fff", // Chữ trắng
+            fontSize: "16px",
+            fontWeight: "bold",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          Đăng ký
+        </button>
       </form>
-      {message && <p>{message}</p>}
+      {message && (
+        <p style={{ textAlign: "center", fontSize: "14px", color: "#333" }}>
+          {message}
+        </p>
+      )}
+      <hr
+        style={{
+          border: "none",
+          borderTop: "1px solid #ccc",
+          margin: "20px 0",
+        }}
+      />
+      <p style={{ textAlign: "center", fontSize: "14px", color: "#333" }}>
+        Đã có tài khoản?
+      </p>
+      <button
+        onClick={() => navigate("/login")}
+        style={{
+          width: "100%",
+          padding: "10px",
+          backgroundColor: "transparent",
+          color: "#007bff", // Chữ xanh dương
+          border: "1px solid #007bff", // Viền xanh dương
+          borderRadius: "4px",
+          cursor: "pointer",
+          marginTop: "10px",
+        }}
+      >
+        Đăng nhập
+      </button>
     </div>
   );
 };
