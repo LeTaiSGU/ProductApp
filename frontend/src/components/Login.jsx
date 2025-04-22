@@ -15,7 +15,6 @@ const Login = ({ onLogin }) => {
     document.body.style.backgroundColor = "#fff"; // Nền trắng
     document.body.style.color = "#000"; // Chữ đen
     document.body.style.height = "100vh";
-    document.body.style.display = "flex";
     document.body.style.justifyContent = "center";
     document.body.style.alignItems = "center";
   }, []);
@@ -56,6 +55,7 @@ const Login = ({ onLogin }) => {
         boxShadow: "0 4px 10px rgba(0, 0, 0, 0.5)",
         width: "100%",
         maxWidth: "400px",
+        margin: "100px auto",
       }}
     >
       <h2
