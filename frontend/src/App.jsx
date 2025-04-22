@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,7 +10,12 @@ import Register from "./components/Register";
 import ProductManagement from "./components/ProductManagement";
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    // Xóa token trong localStorage mỗi lần load trang
+    localStorage.removeItem("token");
+  }, []);
 
   const handleLogin = (newToken) => {
     localStorage.setItem("token", newToken);
